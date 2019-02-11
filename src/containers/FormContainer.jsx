@@ -168,7 +168,6 @@ class FormContainer extends PureComponent {
                     placeholder={"Enter your name"}
                     handleChange={this.handleInput}
                 />{" "}
-                {/* Name of the user */}
                 <Input
                     inputType={"text"}
                     title={"Surname"}
@@ -177,7 +176,6 @@ class FormContainer extends PureComponent {
                     placeholder={"Enter your surname"}
                     handleChange={this.handleInput}
                 />{" "}
-                {/* Surname of the user */}
                 <Input
                     inputType={"text"}
                     title={"Lastname"}
@@ -186,7 +184,6 @@ class FormContainer extends PureComponent {
                     placeholder={"Enter your lastname"}
                     handleChange={this.handleInput}
                 />{" "}
-                {/* Lastname of the user */}
                 <Input
                     inputType={"number"}
                     name={"age"}
@@ -195,7 +192,6 @@ class FormContainer extends PureComponent {
                     placeholder={"Enter your age"}
                     handleChange={this.handleAge}
                 />{" "}
-                {/* Age */}
                 <TextArea
                     title={"Address"}
                     rows={2}
@@ -204,7 +200,6 @@ class FormContainer extends PureComponent {
                     handleChange={this.handleAddress}
                     placeholder={"Enter your address"}
                 />
-                {/* Address */}
                 <TextArea
                     title={"Job"}
                     rows={2}
@@ -213,7 +208,6 @@ class FormContainer extends PureComponent {
                     handleChange={this.handleJob}
                     placeholder={"Enter your job"}
                 />
-                {/* Job */}
                 <TextArea
                     title={"Post"}
                     rows={2}
@@ -222,19 +216,16 @@ class FormContainer extends PureComponent {
                     handleChange={this.handlePost}
                     placeholder={"Enter your post"}
                 />
-                {/* Post */}
                 <Button
                     action={this.handleFormSubmit}
                     type={"primary"}
                     title={"Save"}
                 />{" "}
-                {/*Submit */}
                 <Button
                     action={this.handleClearForm}
                     type={"secondary"}
                     title={"Clear"}
                 />{" "}
-                {/* Clear the form */}
             </form>
         );
     }
