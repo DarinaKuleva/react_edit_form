@@ -12,10 +12,10 @@ class Main extends PureComponent {
         return (
             <HashRouter>
                 <div>
-                    <ul className="header">
-                        <li><NavLink to="/Informaition">Informaition</NavLink></li>
+                    <ul>
+                        <li><NavLink to="/Informaition">Personal information</NavLink></li>
                     </ul>
-                    <div className="content">
+                    <div>
                         <Route path="/Informaition" component={Informaition}/>
                         <Route path="/FormContainer" component={FormContainer}/>
                     </div>

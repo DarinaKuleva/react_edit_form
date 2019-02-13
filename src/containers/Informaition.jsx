@@ -1,9 +1,10 @@
 import React, { PureComponent } from "react";
 import {HashRouter, NavLink} from "react-router-dom";
-import fullName from "./FormContainer";
 
 class Informaition extends PureComponent {
+
     render() {
+
         return (
             <HashRouter>
                 <div>

@@ -3,20 +3,22 @@ import React, { PureComponent } from "react";
 import Input from "../components/Input";
 import TextArea from "../components/TextArea";
 import Button from "../components/Button";
+import {NavLink} from "react-router-dom";
 
 class FormContainer extends PureComponent {
+
     constructor(props) {
         super(props);
 
         this.state = {
             newUser: {
-                name: "",
-                surname: "",
-                lastname: "",
-                age: "",
-                address: "",
-                job: "",
-                post: ""
+                name: "Ivan",
+                surname: "Vania",
+                lastname: "Ivanovich",
+                age: "7",
+                address: "Lenengrad",
+                job: "Ivan",
+                post: "Vanusha"
             },
         };
         this.handleName = this.handleName.bind(this);
@@ -32,7 +34,10 @@ class FormContainer extends PureComponent {
     }
 
     handleName(e) {
-        let value = e.target.value;
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({[name]: value},);
+   /*     let value = e.target.value;
         this.setState(
             prevState => ({
                 newUser: {
@@ -41,7 +46,7 @@ class FormContainer extends PureComponent {
                 }
             }),
             () => console.log(this.state.newUser)
-        );
+        ); */
     }
 
     handleSurname(e) {
@@ -103,7 +108,7 @@ class FormContainer extends PureComponent {
             prevState => ({
                 newUser: {
                     ...prevState.newUser,
-                    about: value
+                    address: value
                 }
             }),
             () => console.log(this.state.newUser)
@@ -116,7 +121,7 @@ class FormContainer extends PureComponent {
             prevState => ({
                 newUser: {
                     ...prevState.newUser,
-                    about: value
+                    job: value
                 }
             }),
             () => console.log(this.state.newUser)
@@ -129,7 +134,7 @@ class FormContainer extends PureComponent {
             prevState => ({
                 newUser: {
                     ...prevState.newUser,
-                    about: value
+                    post: value
                 }
             }),
             () => console.log(this.state.newUser)
@@ -138,8 +143,16 @@ class FormContainer extends PureComponent {
 
     handleFormSubmit(e) {
         e.preventDefault();
-        window.location = 'react-Edit-Form/src/containers/Information.jsx';
-
+        const Employee = {
+            name: this.state.newUser.name,
+            surname: this.state.newUser.surname,
+            lastname: this.state.newUser.lastname,
+            age: this.state.newUser.age,
+            address: this.state.newUser.address,
+            job: this.state.newUser.job,
+            post: this.state.newUser.post
+        };
+        console.log(JSON.stringify(Employee));
     }
 
     handleClearForm(e) {
@@ -159,6 +172,7 @@ class FormContainer extends PureComponent {
 
     render() {
         return (
+            <div>
             <form onSubmit={this.handleFormSubmit}>
                 <Input
                     inputType={"text"}
@@ -216,18 +230,28 @@ class FormContainer extends PureComponent {
                     handleChange={this.handlePost}
                     placeholder={"Enter your post"}
                 />
-                <Button
-                    action={this.handleFormSubmit}
-                    type={"primary"}
-                    title={"Save"}
-                />{" "}
+                <Button onClick={this.handleFormSubmit} title={"SAVE"}>
+                </Button>{" "}
                 <Button
                     action={this.handleClearForm}
                     type={"secondary"}
                     title={"Clear"}
                 />{" "}
+                <button>
+                    <NavLink to="/Information">UNDO</NavLink>
+                </button>
             </form>
-        );
+                <div>
+                    <p>Name: {this.state.newUser.name}</p>
+                    <p>Surname: {this.state.newUser.surname}</p>
+                    <p>Lastname: {this.state.newUser.lastname}</p>
+                    <p>Age: {this.state.newUser.age}</p>
+                    <p>Address: {this.state.newUser.address}</p>
+                    <p>Job: {this.state.newUser.job}</p>
+                    <p>Post: {this.state.newUser.post}</p>
+                </div>
+        </div>
+        )
     }
 }
 
