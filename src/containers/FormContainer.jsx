@@ -1,11 +1,14 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent } from 'react'
 
-import Input from "../components/Input";
-import Button from "../components/Button";
-import { NavLink } from "react-router-dom";
-import saveForm from '../action/saveForm';
+import Input from '../components/Input'
+import Button from '../components/Button'
+import { NavLink } from 'react-router-dom'
+import saveForm from '../action/saveForm'
 import clearForm from '../action/clearForm'
 import { connect } from 'react-redux'
+
+import btn from '../styles/btn.module.css'
+import form from "../styles/form.module.css";
 
 class FormContainer extends PureComponent {
 
@@ -25,15 +28,6 @@ class FormContainer extends PureComponent {
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    const Employee = {
-      name: this.state.name,
-      surname: this.state.surname,
-      lastname: this.state.lastname,
-      age: this.state.age,
-      address: this.state.address,
-      job: this.state.job,
-      post: this.state.post
-    };
     this.props.dispatch(saveForm(this.state.name, this.state.surname, this.state.lastname, this.state.age, this.state.address, this.state.job, this.state.post))
   }
 
@@ -53,11 +47,11 @@ class FormContainer extends PureComponent {
 
   render() {
     return (
-      <div>
+      <div className={form.information}>
         <ul>
           <li><NavLink to="/">Personal information</NavLink></li>
         </ul>
-        <form onSubmit={this.handleFormSubmit}>
+        <form onSubmit={this.handleFormSubmit} className={form.text}>
           <Input
             inputType="text"
             title={"Name"}
@@ -114,17 +108,15 @@ class FormContainer extends PureComponent {
             placeholder={"Enter your post"}
             handleChange={this.handleInput}
           />
-          <Button handleClick={this.handleFormSubmit} title={"SAVE"} type="button">
+          <Button handleClick={this.handleFormSubmit} title={"SAVE"} type="button" className={btn.style}>
           </Button>
           <Button
             handleClick={this.handleClearForm}
             type={"secondary"}
             title={"Clear"}
+            className={btn.style}
           />
         </form>
-        <div>
-          {Object.keys(this.state).map(key => <p key={key}>{`${key}: ${this.state[key]}`}</p>)}
-        </div>
       </div>
     )
   }
