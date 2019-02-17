@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { HashRouter, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Information extends PureComponent {
@@ -7,7 +7,6 @@ class Information extends PureComponent {
   render() {
 
     return (
-      <HashRouter>
         <div>
           <p>Name: {this.props.name}</p>
           <p>Surname: {this.props.surname}</p>
@@ -15,7 +14,6 @@ class Information extends PureComponent {
             <NavLink to="/FormContainer">Изменить</NavLink>
           </button>
         </div>
-      </HashRouter>
     );
   }
 }

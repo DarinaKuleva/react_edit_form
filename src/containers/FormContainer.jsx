@@ -55,7 +55,7 @@ class FormContainer extends PureComponent {
     return (
       <div>
         <ul>
-          <li><NavLink to="/Information">Personal information</NavLink></li>
+          <li><NavLink to="/">Personal information</NavLink></li>
         </ul>
         <form onSubmit={this.handleFormSubmit}>
           <Input
