@@ -51,10 +51,9 @@ class FormContainer extends PureComponent {
         <ul>
           <li><NavLink to="/">Personal information</NavLink></li>
         </ul>
-        <form onSubmit={this.handleFormSubmit} className={form.text}>
+        <form onSubmit={this.handleFormSubmit} className={form.information}>
           <Input
             inputType="text"
-            title={"Name"}
             name={"name"}
             value={this.state.name}
             placeholder={"Enter your name"}
@@ -62,7 +61,6 @@ class FormContainer extends PureComponent {
           />
           <Input
             inputType="text"
-            title={"Surname"}
             name={"surname"}
             value={this.state.surname}
             placeholder={"Enter your surname"}
@@ -70,7 +68,6 @@ class FormContainer extends PureComponent {
           />
           <Input
             inputType="text"
-            title={"Lastname"}
             name={"lastname"}
             value={this.state.lastname}
             placeholder={"Enter your lastname"}
@@ -79,7 +76,6 @@ class FormContainer extends PureComponent {
           <Input
             inputType="number"
             name={"age"}
-            title={"Age"}
             value={this.state.age}
             placeholder={"Enter your age"}
             handleChange={this.handleInput}
@@ -87,7 +83,6 @@ class FormContainer extends PureComponent {
           <Input
             inputType="text"
             name={"address"}
-            title={"Address"}
             value={this.state.address}
             placeholder={"Enter your address"}
             handleChange={this.handleInput}
@@ -95,7 +90,6 @@ class FormContainer extends PureComponent {
           <Input
             inputType="text"
             name={"job"}
-            title={"Job"}
             value={this.state.job}
             placeholder={"Enter your job"}
             handleChange={this.handleInput}
@@ -103,7 +97,6 @@ class FormContainer extends PureComponent {
           <Input
             inputType="text"
             name={"post"}
-            title={"Post"}
             value={this.state.post}
             placeholder={"Enter your post"}
             handleChange={this.handleInput}

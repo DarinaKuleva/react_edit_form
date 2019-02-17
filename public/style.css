@@ -97,3 +97,13 @@ a:hover {
     background: rgba(255, 255, 255, .2);
 }
 
+input {
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    margin: 20px auto 0 auto;
+    background-color: #d4f9f1;
+}
