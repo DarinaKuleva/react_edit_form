@@ -1,243 +1,128 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent } from 'react'
 
-import Input from "../components/Input";
-import TextArea from "../components/TextArea";
-import Button from "../components/Button";
+import Input from '../components/Input'
+import Button from '../components/Button'
+import { NavLink } from 'react-router-dom'
+import saveForm from '../action/saveForm'
+import clearForm from '../action/clearForm'
+import { connect } from 'react-redux'
+
+import btn from '../styles/btn.module.css'
+import form from "../styles/form.module.css";
 
 class FormContainer extends PureComponent {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            newUser: {
-                name: "",
-                surname: "",
-                lastname: "",
-                age: "",
-                address: "",
-                job: "",
-                post: ""
-            },
-        };
-        this.handleName = this.handleName.bind(this);
-        this.handleSurname = this.handleSurname.bind(this);
-        this.handleLastname = this.handleLastname.bind(this);
-        this.handleAge = this.handleAge.bind(this);
-        this.handleAddress = this.handleAddress.bind(this);
-        this.handleJob = this.handleJob.bind(this);
-        this.handlePost = this.handlePost.bind(this);
-        this.handleFormSubmit = this.handleFormSubmit.bind(this);
-        this.handleClearForm = this.handleClearForm.bind(this);
-        this.handleInput = this.handleInput.bind(this);
-    }
+  state = {
+    name: this.props.name,
+    surname: this.props.surname,
+    lastname: this.props.lastname,
+    age: this.props.age,
+    address: this.props.address,
+    job: this.props.job,
+    post: this.props.post
+  };
 
-    handleName(e) {
-        let value = e.target.value;
-        this.setState(
-            prevState => ({
-                newUser: {
-                    ...prevState.newUser,
-                    name: value
-                }
-            }),
-            () => console.log(this.state.newUser)
-        );
-    }
+  handleInput = (e) => {
+    this.setState({[e.target.name]: e.target.value})
+  }
 
-    handleSurname(e) {
-        let value = e.target.value;
-        this.setState(
-            prevState => ({
-                newUser: {
-                    ...prevState.newUser,
-                    name: value
-                }
-            }),
-            () => console.log(this.state.newUser)
-        );
-    }
+  handleFormSubmit = (e) => {
+    e.preventDefault();
+    this.props.dispatch(saveForm(this.state.name, this.state.surname, this.state.lastname, this.state.age, this.state.address, this.state.job, this.state.post))
+  }
 
-    handleLastname(e) {
-        let value = e.target.value;
-        this.setState(
-            prevState => ({
-                newUser: {
-                    ...prevState.newUser,
-                    name: value
-                }
-            }),
-            () => console.log(this.state.newUser)
-        );
-    }
 
-    handleAge(e) {
-        let value = e.target.value;
-        this.setState(
-            prevState => ({
-                newUser: {
-                    ...prevState.newUser,
-                    age: value
-                }
-            }),
-            () => console.log(this.state.newUser)
-        );
-    }
+  handleClearForm = () => {
+    this.setState({
+      name: "",
+      surname: "",
+      lastname: "",
+      age: "",
+      address: "",
+      job: "",
+      post: ""
+    });
+    this.props.dispatch(clearForm(this.state.name, this.state.surname, this.state.lastname, this.state.age, this.state.address, this.state.job, this.state.post))
+  }
 
-    handleInput(e) {
-        let value = e.target.value;
-        let name = e.target.name;
-        this.setState(
-            prevState => ({
-                newUser: {
-                    ...prevState.newUser,
-                    [name]: value
-                }
-            }),
-            () => console.log(this.state.newUser)
-        );
-    }
-
-    handleAddress(e) {
-        let value = e.target.value;
-        this.setState(
-            prevState => ({
-                newUser: {
-                    ...prevState.newUser,
-                    about: value
-                }
-            }),
-            () => console.log(this.state.newUser)
-        );
-    }
-
-    handleJob(e) {
-        let value = e.target.value;
-        this.setState(
-            prevState => ({
-                newUser: {
-                    ...prevState.newUser,
-                    about: value
-                }
-            }),
-            () => console.log(this.state.newUser)
-        );
-    }
-
-    handlePost(e) {
-        let value = e.target.value;
-        this.setState(
-            prevState => ({
-                newUser: {
-                    ...prevState.newUser,
-                    about: value
-                }
-            }),
-            () => console.log(this.state.newUser)
-        );
-    }
-
-    handleFormSubmit(e) {
-        e.preventDefault();
-        window.location = 'react-Edit-Form/src/containers/Information.jsx';
-
-    }
-
-    handleClearForm(e) {
-        e.preventDefault();
-        this.setState({
-            newUser: {
-                name: "",
-                surname: "",
-                lastname: "",
-                age: "",
-                address: "",
-                job: "",
-                post: ""
-            }
-        });
-    }
-
-    render() {
-        return (
-            <form onSubmit={this.handleFormSubmit}>
-                <Input
-                    inputType={"text"}
-                    title={"Name"}
-                    name={"name"}
-                    value={this.state.newUser.name}
-                    placeholder={"Enter your name"}
-                    handleChange={this.handleInput}
-                />{" "}
-                {/* Name of the user */}
-                <Input
-                    inputType={"text"}
-                    title={"Surname"}
-                    name={"surname"}
-                    value={this.state.newUser.surname}
-                    placeholder={"Enter your surname"}
-                    handleChange={this.handleInput}
-                />{" "}
-                {/* Surname of the user */}
-                <Input
-                    inputType={"text"}
-                    title={"Lastname"}
-                    name={"lastname"}
-                    value={this.state.newUser.lastname}
-                    placeholder={"Enter your lastname"}
-                    handleChange={this.handleInput}
-                />{" "}
-                {/* Lastname of the user */}
-                <Input
-                    inputType={"number"}
-                    name={"age"}
-                    title={"Age"}
-                    value={this.state.newUser.age}
-                    placeholder={"Enter your age"}
-                    handleChange={this.handleAge}
-                />{" "}
-                {/* Age */}
-                <TextArea
-                    title={"Address"}
-                    rows={2}
-                    value={this.state.newUser.address}
-                    name={"address"}
-                    handleChange={this.handleAddress}
-                    placeholder={"Enter your address"}
-                />
-                {/* Address */}
-                <TextArea
-                    title={"Job"}
-                    rows={2}
-                    value={this.state.newUser.job}
-                    name={"job"}
-                    handleChange={this.handleJob}
-                    placeholder={"Enter your job"}
-                />
-                {/* Job */}
-                <TextArea
-                    title={"Post"}
-                    rows={2}
-                    value={this.state.newUser.post}
-                    name={"post"}
-                    handleChange={this.handlePost}
-                    placeholder={"Enter your post"}
-                />
-                {/* Post */}
-                <Button
-                    action={this.handleFormSubmit}
-                    type={"primary"}
-                    title={"Save"}
-                />{" "}
-                {/*Submit */}
-                <Button
-                    action={this.handleClearForm}
-                    type={"secondary"}
-                    title={"Clear"}
-                />{" "}
-                {/* Clear the form */}
-            </form>
-        );
-    }
+  render() {
+    return (
+      <div className={form.information}>
+        <ul>
+          <li><NavLink to="/">Personal information</NavLink></li>
+        </ul>
+        <form onSubmit={this.handleFormSubmit} className={form.information}>
+          <Input
+            inputType="text"
+            name={"name"}
+            value={this.state.name}
+            placeholder={"Enter your name"}
+            handleChange={this.handleInput}
+          />
+          <Input
+            inputType="text"
+            name={"surname"}
+            value={this.state.surname}
+            placeholder={"Enter your surname"}
+            handleChange={this.handleInput}
+          />
+          <Input
+            inputType="text"
+            name={"lastname"}
+            value={this.state.lastname}
+            placeholder={"Enter your lastname"}
+            handleChange={this.handleInput}
+          />
+          <Input
+            inputType="number"
+            name={"age"}
+            value={this.state.age}
+            placeholder={"Enter your age"}
+            handleChange={this.handleInput}
+          />
+          <Input
+            inputType="text"
+            name={"address"}
+            value={this.state.address}
+            placeholder={"Enter your address"}
+            handleChange={this.handleInput}
+          />
+          <Input
+            inputType="text"
+            name={"job"}
+            value={this.state.job}
+            placeholder={"Enter your job"}
+            handleChange={this.handleInput}
+          />
+          <Input
+            inputType="text"
+            name={"post"}
+            value={this.state.post}
+            placeholder={"Enter your post"}
+            handleChange={this.handleInput}
+          />
+          <Button handleClick={this.handleFormSubmit} title={"SAVE"} type="button" className={btn.style}>
+          </Button>
+          <Button
+            handleClick={this.handleClearForm}
+            type={"secondary"}
+            title={"Clear"}
+            className={btn.style}
+          />
+        </form>
+      </div>
+    )
+  }
 }
 
-export default FormContainer;
+export default connect(state => {
+  return {
+    name: state.name,
+    surname: state.surname,
+    lastname: state.lastname,
+    age: state.age,
+    address: state.address,
+    job: state.job,
+    post: state.post
+  }
+})(FormContainer)
